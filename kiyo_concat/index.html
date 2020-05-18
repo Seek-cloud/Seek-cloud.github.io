@@ -9,5 +9,29 @@
 	<script defer src='./build/bundle.js'></script>
 </head>
 <body>
+<script>
+	var detectOrient = function() {
+		var width = document.documentElement.clientWidth,
+				height = document.documentElement.clientHeight,
+				wrapper = document.getElementById("main"),
+				style = "";
+		if(width >= height) {
+			style += "width:100%";
+			style += "height:100%;";
+			style += "-webkit-transform: rotate(0); transform: rotate(0);";
+			style += "-webkit-transform-origin: 0 0;";
+			style += "transform-origin: 0 0;";
+		} else {
+			style += "width:" + height + "px;";
+			style += "height:" + width + "px;";
+			style += "-webkit-transform: rotate(90deg); transform: rotate(90deg);";
+			style += "-webkit-transform-origin: " + width / 2 + "px " + width / 2 + "px;";
+			style += "transform-origin: " + width / 2 + "px " + width / 2 + "px;";
+		}
+		wrapper.style.cssText = style;
+	};
+	window.onresize = detectOrient;
+	detectOrient();
+</script>
 </body>
 </html>
