@@ -9,8 +9,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="baidu-site-verification" content="XEESrz1S4I" />
   <meta charset="utf-8">
+  <style>
+    #container {
+      max-width: 50rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
 </head>
-<body style="height: 100%; margin: 0">
+<body style="height: 100%">
   <div id="container" style="height: 70%"></div>
   <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
   <script type="text/javascript">
@@ -63,7 +70,7 @@
     option = {
       title: { text: '商界大亨价格变动图' },
       tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
-      legend: { y: 'bottom', data: legend },
+      legend: { y: 'bottom', data: legend, selectedMode: 'multiple' },
       grid: { left: '3%', right: '4%', bottom: '40%', containLabel: true },
       toolbox: { feature: { saveAsImage: {} } },
       xAxis: {
@@ -87,6 +94,59 @@
     }
 
     window.addEventListener('resize', myChart.resize);
+
+    /**
+     * 双击图例选中
+     */
+    dbUnSelectExpectMyself(myChart, legend);
+
+    var time1 = new Date();
+
+    function dbUnSelectExpectMyself(chart, legendData) {
+      //定义当前点击的标签
+      var legendWai = "";
+      myChart.on('legendselectchanged', function(obj) {
+        //判断当前双击还是单单击
+        var j = shuangJi();
+        //如果为单机获取给当前的legent赋值
+        if (j == 1) {
+          legendWai = obj.name;
+        }
+        //如果为双击 进行隐藏和显示
+        if (j == 2) {
+          for (var i = 0; i < legendData.length; i++) {
+            //显示当前legent 关闭非当前legent
+            if (legendWai == legendData[i]) {
+              chart.dispatchAction({
+                type: 'legendSelect',
+                name: legendData[i]
+              });
+            } else {
+              chart.dispatchAction({
+                type: 'legendUnSelect',
+                name: legendData[i]
+              });
+            }
+          }
+        }
+      });
+    }
+
+    //判断单双击函数
+    function shuangJi() {
+      var time2 = new Date();
+      //第二次时间减去第一次时间小于300ms为双击事件，否则为单击事件
+      if (time2 - time1 < 300) {
+        console.log("2")
+        return 2;
+      } else {
+        //如果为单击事件 则更新当前第一次时间
+        time1 = time2;
+        console.log("1")
+        return 1;
+      }
+    }
+
   </script>
 </body>
 </html>
