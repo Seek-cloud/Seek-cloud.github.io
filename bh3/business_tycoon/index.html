@@ -1,3 +1,4 @@
+
 <html lang="zh-CN" style="height: 100%">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,135 +19,133 @@
   </style>
 </head>
 <body style="height: 100%">
-  <div id="container" style="height: 70%"></div>
-  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
-  <script type="text/javascript">
-    var dom = document.getElementById('container');
-    var myChart = echarts.init(dom, null, {
-      renderer: 'canvas',
-      useDirtyRect: false
-    });
-    var app = {};
+<div id="container" style="height: 70%"></div>
+<script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+<script type="text/javascript">
+  var dom = document.getElementById('container');
+  var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+  });
+  var app = {};
 
-    var option;
+  var option;
 
-    const legend = [
-      '蜜瓜', '长剑', '阿拉哈托', '卡莲幻想', '赤鸢手办', '汉白玉', '带鱼', '翡翠', '显卡', '鲜花', '天父', '二胡', '绿茶', '半导体', '罐头', '爆竹', '土豆', '泡面', '木材', '包菜', '多肉'
-    ];
+  const legend = [
+    '蜜瓜', '长剑', '阿拉哈托', '卡莲幻想', '赤鸢手办', '汉白玉', '带鱼', '翡翠', '显卡', '鲜花', '天父', '二胡', '绿茶', '半导体', '罐头', '爆竹', '土豆', '泡面', '木材', '包菜', '多肉'
+  ];
 
-    const data = {
-        //        蜜瓜    长剑  阿拉哈托 卡莲幻想 赤鸢手办 汉白玉 带鱼   翡翠  显卡  鲜花  天父  二胡  绿茶  半导体 罐头  爆竹  土豆  泡面  木材  包菜  多肉
-        '5.18日':  [25110, 1200, 1375,    1190,    1100,    1000,  1119,  1000, 1139, 824,  850,  90,   90,   90,    75,   66,   62,   65,   75,   53,   65]
-      , '5.18夜':  [23110, 1333, 955,     1190,    971,     1000,  1119,  762,  1139, 896,  850,  80,   109,  90,    75,   69,   62,   65,   76,   55,   65]
-      , '5.19日':  [27333, 1079, 955,     1190,    1040,    843,   1057,  1114, 1139, 896,  927,  80,   90,   114,   76,   102,  62,   65,   67,   109,  56]
-      , '5.19夜':  [24666, 1666, 1146,    1178,    1398,    843,   1057,  1114, 1139, 896,  962,  65,   84,   101,   77,   79,   63,   58,   115,  109,  56]
-      , '5.20日':  [18222, 1026, 2038,    935,     1398,    843,   839,   1114, 698,  896,  704,  121,  79,   60,    77,   66,   63,   83,   116,  109,  59]
-      , '5.20夜':  [25333, 2119, 2038,    1190,    1352,    1205,  1275,  1114, 1038, 896,  798,  90,   160,  59,    73,   109,  63,   59,   72,   109,  59]
-      , '5.21日':  [25999, 2132, 2038,    1324,    1352,    1352,  902,   1036, 1038, 736,  515,  82,   161,  120,   113,  109,  63,   124,  73,   109,  75]
-      , '5.21夜':  [22222, 999,  1592,    1324,    947,     832,   1659,  1036, 1038, 696,  515,  170,  79,   83,    147,  74,   63,   124,  90,   109,  49]
-      , '2.22日':  [19777, 1546, 955,     1324,    1849,    1008,  1638,  1036, 1139, 616,  1030, 169,  112,  78,    69,   139,  79,   66,   54,   109,  49]
-      , '2.22夜':  [28444, 1546, 1006,    1324,    1849,    1008,  1638,  909,  698,  600,  764,  169,  97,   117,   147,  140,  88,   92,   62,   60,   78]
-      , '2.23日':  [23333, 1546, 1121,    1044,    1294,    668,   1638,  909,  964,  264,  1005, 169,  110,  113,   145,  140,  88,   61,   62,   42,   65]
-      , '2.23夜':  [20666, 1546, 2012,    935,     1144,    1370,  839,   792,  854,  264,  893,  169,  79,   113,   69,   140,  71,   61,   45,   42,   57]
-      , '2.24日':  [24888, 1546, 2012,    1093,    971,     1370,  839,   753,  983,  848,  747,  169,  162,  76,    69,   140,  101,  70,   45,   86,   60]
-      , '2.24夜':  [26666, 1386, 1337,    972,     1202,    1172,  839,   1564, 799,  848,  670,  82,   162,  155,   69,   103,  87,   67,   81,   86,   49]
-      , '2.25日':  [25333, 1053, 1592,    959,     1375,    1370,  839,   1564, 1452, 848,  687,  84,   162,  155,   69,   54,   87,   81,   90,   86,   73]
-    };
+  const data = {
+      '5.18日':  [25110, 1200, 1375,    1190,    1100,    1000,  1119,  1000, 1139, 824,  850,  90,   90,   90,    75,   66,   62,   65,   75,   53,   65]
+    , '5.18夜':  [23110, 1333, 955,     1190,    971,     1000,  1119,  762,  1139, 896,  850,  80,   109,  90,    75,   69,   62,   65,   76,   55,   65]
+    , '5.19日':  [27333, 1079, 955,     1190,    1040,    843,   1057,  1114, 1139, 896,  927,  80,   90,   114,   76,   102,  62,   65,   67,   109,  56]
+    , '5.19夜':  [24666, 1666, 1146,    1178,    1398,    843,   1057,  1114, 1139, 896,  962,  65,   84,   101,   77,   79,   63,   58,   115,  109,  56]
+    , '5.20日':  [18222, 1026, 2038,    935,     1398,    843,   839,   1114, 698,  896,  704,  121,  79,   60,    77,   66,   63,   83,   116,  109,  59]
+    , '5.20夜':  [25333, 2119, 2038,    1190,    1352,    1205,  1275,  1114, 1038, 896,  798,  90,   160,  59,    73,   109,  63,   59,   72,   109,  59]
+    , '5.21日':  [25999, 2132, 2038,    1324,    1352,    1352,  902,   1036, 1038, 736,  515,  82,   161,  120,   113,  109,  63,   124,  73,   109,  75]
+    , '5.21夜':  [22222, 999,  1592,    1324,    947,     832,   1659,  1036, 1038, 696,  515,  170,  79,   83,    147,  74,   63,   124,  90,   109,  49]
+    , '2.22日':  [19777, 1546, 955,     1324,    1849,    1008,  1638,  1036, 1139, 616,  1030, 169,  112,  78,    69,   139,  79,   66,   54,   109,  49]
+    , '2.22夜':  [28444, 1546, 1006,    1324,    1849,    1008,  1638,  909,  698,  600,  764,  169,  97,   117,   147,  140,  88,   92,   62,   60,   78]
+    , '2.23日':  [23333, 1546, 1121,    1044,    1294,    668,   1638,  909,  964,  264,  1005, 169,  110,  113,   145,  140,  88,   61,   62,   42,   65]
+    , '2.23夜':  [20666, 1546, 2012,    935,     1144,    1370,  839,   792,  854,  264,  893,  169,  79,   113,   69,   140,  71,   61,   45,   42,   57]
+    , '2.24日':  [24888, 1546, 2012,    1093,    971,     1370,  839,   753,  983,  848,  747,  169,  162,  76,    69,   140,  101,  70,   45,   86,   60]
+    , '2.24夜':  [26666, 1386, 1337,    972,     1202,    1172,  839,   1564, 799,  848,  670,  82,   162,  155,   69,   103,  87,   67,   81,   86,   49]
+    , '2.25日':  [25333, 1053, 1592,    959,     1375,    1370,  839,   1564, 1452, 848,  687,  84,   162,  155,   69,   54,   87,   81,   90,   86,   73]
+    , '2.25夜':  [25999, 1053, 1057,    959,     913,     1277,  933,   1564, 1452, 808,  687,  84,   123,  155,   84,   52,   92,   60,   90,   86,   73]
+      //         蜜瓜    长剑  阿拉哈托  卡莲幻想 赤鸢手办  汉白玉 带鱼    翡翠  显卡  鲜花  天父  二胡   绿茶  半导体 罐头   爆竹  土豆  泡面  木材  包菜  多肉
+  };
 
-    let xAxisData = [];
-    let series = [];
+  let xAxisData = [];
+  let series = [];
 
-    legend.forEach((item) => {
-      series.push({ name: item, type: 'line', data: []  });
+  legend.forEach((item) => {
+    series.push({ name: item, type: 'line', data: []  });
+  })
+
+  for (let prop in data) {
+    xAxisData.push(prop);
+    data[prop].forEach((value, index) => {
+      series[index].data.push(value);
     })
+  }
 
-    for (let prop in data) {
-      xAxisData.push(prop);
-      data[prop].forEach((value, index) => {
-        series[index].data.push(value);
-      })
-    }
+  option = {
+    title: { text: `商界大亨价格变动图，双击图例可以单独查看，更新至：[${xAxisData[xAxisData.length-1]}]` },
+    tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
+    legend: { y: 'bottom', data: legend, selectedMode: 'multiple' },
+    grid: { left: '3%', right: '4%', bottom: '40%', containLabel: true },
+    toolbox: { feature: { saveAsImage: {} } },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: xAxisData
+    },
+    yAxis: { type: 'value', max: 'dataMax' },
+    series: series,
+    dataZoom: [
+      {
+        type: 'inside',
+        start: 60,
+        end: 100
+      }
+    ],
+  };
 
-    option = {
-      title: { text: '商界大亨价格变动图' },
-      tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
-      legend: { y: 'bottom', data: legend, selectedMode: 'multiple' },
-      grid: { left: '3%', right: '4%', bottom: '40%', containLabel: true },
-      toolbox: { feature: { saveAsImage: {} } },
-      xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: xAxisData
-      },
-      yAxis: { type: 'value', max: 'dataMax' },
-      series: series,
-      dataZoom: [
-        {
-          type: 'inside',
-          start: 60,
-          end: 100
-        }
-      ],
-    };
+  if (option && typeof option === 'object') {
+    myChart.setOption(option);
+  }
 
-    if (option && typeof option === 'object') {
-      myChart.setOption(option);
-    }
+  window.addEventListener('resize', myChart.resize);
 
-    window.addEventListener('resize', myChart.resize);
+  dbUnSelectExpectMyself(myChart, legend);
 
-    /**
-     * 双击图例选中
-     */
-    dbUnSelectExpectMyself(myChart, legend);
+  var time1 = new Date();
 
-    var time1 = new Date();
-
-    function dbUnSelectExpectMyself(chart, legendData) {
-      //定义当前点击的标签
-      var legendWai = "";
-      myChart.on('legendselectchanged', function(obj) {
-        //判断当前双击还是单单击
-        var j = shuangJi();
-        //如果为单机获取给当前的legent赋值
-        if (j == 1) {
-          legendWai = obj.name;
-        }
-        //如果为双击 进行隐藏和显示
-        if (j == 2) {
-          for (var i = 0; i < legendData.length; i++) {
-            //显示当前legent 关闭非当前legent
-            if (legendWai == legendData[i]) {
-              chart.dispatchAction({
-                type: 'legendSelect',
-                name: legendData[i]
-              });
-            } else {
-              chart.dispatchAction({
-                type: 'legendUnSelect',
-                name: legendData[i]
-              });
-            }
+  function dbUnSelectExpectMyself(chart, legendData) {
+    //定义当前点击的标签
+    var legendWai = "";
+    myChart.on('legendselectchanged', function(obj) {
+      //判断当前双击还是单单击
+      var j = shuangJi();
+      //如果为单机获取给当前的legent赋值
+      if (j == 1) {
+        legendWai = obj.name;
+      }
+      //如果为双击 进行隐藏和显示
+      if (j == 2) {
+        for (var i = 0; i < legendData.length; i++) {
+          //显示当前legent 关闭非当前legent
+          if (legendWai == legendData[i]) {
+            chart.dispatchAction({
+              type: 'legendSelect',
+              name: legendData[i]
+            });
+          } else {
+            chart.dispatchAction({
+              type: 'legendUnSelect',
+              name: legendData[i]
+            });
           }
         }
-      });
-    }
-
-    //判断单双击函数
-    function shuangJi() {
-      var time2 = new Date();
-      //第二次时间减去第一次时间小于300ms为双击事件，否则为单击事件
-      if (time2 - time1 < 300) {
-        console.log("2")
-        return 2;
-      } else {
-        //如果为单击事件 则更新当前第一次时间
-        time1 = time2;
-        console.log("1")
-        return 1;
       }
-    }
+    });
+  }
 
-  </script>
+  //判断单双击函数
+  function shuangJi() {
+    var time2 = new Date();
+    //第二次时间减去第一次时间小于300ms为双击事件，否则为单击事件
+    if (time2 - time1 < 300) {
+      console.log("2")
+      return 2;
+    } else {
+      //如果为单击事件 则更新当前第一次时间
+      time1 = time2;
+      console.log("1")
+      return 1;
+    }
+  }
+
+</script>
 </body>
 </html>
